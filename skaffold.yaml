@@ -1,0 +1,19 @@
+# sample-next-go: Next.js frontend + Go API. One repo, two images.
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: sample-next-go
+
+build:
+  local: {}
+  artifacts:
+    - image: sample-next-go-frontend
+      context: frontend
+      docker:
+        dockerfile: Dockerfile
+    - image: sample-next-go-api
+      context: api
+      buildpacks:
+        builder: paketobuildpacks/builder-jammy-base
+
+deploy: {}
